@@ -9,8 +9,20 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware - enable CORS for all origins temporarily
-app.use(cors());
+// Middleware - restrict CORS to known origins
+const allowedOrigins = [
+  'https://dev-resource-tracker-api.netlify.app',
+  'http://localhost:5173'
+];
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
 app.use(express.json());
 
 // Test root route - MUST come before other routes
@@ -62,5 +74,4 @@ connectDB();
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`✅ Server running on port ${PORT}`);
   console.log(`📍 Local: http://localhost:${PORT}`);
-  console.log(`🌐 API Root: https://dev-resource-tracker-api.onrender.com`);
 });

@@ -1,0 +1,32 @@
+# Git history
+.git
+.gitignore
+
+# Node dependency trees (re-installed inside the image)
+node_modules
+*/node_modules
+npm-debug.log*
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Build artifacts
+dist
+*/dist
+build
+*/build
+
+# OS & IDE clutter
+.DS_Store
+.vscode
+.idea
+*.swp
+
+# Audit / generated docs
+audit*.md
+README.md
+
+# Kimchi tooling state
+.kimchi

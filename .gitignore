@@ -1,6 +1,5 @@
 # Dependencies
 node_modules/
-*/node_modules/
 
 # Environment variables
 .env
@@ -13,8 +12,6 @@ node_modules/
 # Build outputs
 dist/
 build/
-*/dist/
-*/build/
 
 # Logs
 npm-debug.log*
@@ -50,3 +47,25 @@ Thumbs.db
 # Temporary folders
 tmp/
 temp/
+
+# ---------------------------------------------------------------------------
+# DevSecOps additions — 2026-06-11
+# ---------------------------------------------------------------------------
+
+# Production environment files (contain real deployment URLs / endpoints).
+.env.production
+*/.env.production
+.env.staging
+*/.env.staging
+
+# Generated audit / analysis reports (ephemeral artifacts).
+audit*.md
+!README.md
+devsecops-audit-*.md
+
+# Kimchi internal orchestration state (host-specific, non-portable).
+.kimchi/
+
+# Local Docker overrides that may contain secrets or host paths.
+docker-compose.override.yml
+*.override.yml
